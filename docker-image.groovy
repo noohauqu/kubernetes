@@ -10,8 +10,11 @@ pipeline {
           sh '''
             docker system prune -a --volumes -f
             docker run -d -p 8050:80 nginx:latest
-            for i in `docker ps -a | awk '{print $1}' `;do docker exec -itd $i /bin/bash && git clone https://github.com/noohauqu/covid19-site.git && rm -rf /usr/share/nginx/html/* && cd "covid site" && cp -r . /usr/share/nginx/html/; done 
+            for i in `docker ps -a | awk '{print $1}' `;do docker exec -itd $i /bin/bash && git clone https://github.com/noohauqu/covid19-site.git && rm -rf /usr/share/nginx/html/* && cd "covid site" && cp -r . /usr/share/nginx/html/; done
+            
           '''
         }
       }
     }
+  }
+}
